@@ -20,7 +20,7 @@ namespace Training_QA_Automation.Framework.PageObjects
         [FindsBy(How = How.Id, Using = "sign-in-desk")]
         private IWebElement SignInButton;
 
-        [FindsBy(How = How.ClassName, Using = "btn btn-default tab-backward")]
+        [FindsBy(How = How.CssSelector, Using = "a.btn")]
         private IWebElement CreateAccountButton;
 
         public RegistrationPage(IWebDriver driver)
