@@ -59,7 +59,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Framework\Actions.cs" />
+    <Compile Include="Framework\PageObjects\EmailInboxPage.cs" />
+    <Compile Include="Framework\PageObjects\RegistrationPage.cs" />
+    <Compile Include="Tests\RegistrationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
