@@ -11,6 +11,7 @@ namespace Training_QA_Automation
     public class UnitTest1
     {
         private RegistrationPage regPage;
+        private EmailInboxPage mailPage;
         private IWebDriver driver;
 
         private string sauceUserName;
@@ -20,8 +21,8 @@ namespace Training_QA_Automation
         public void TestInitialize()
         {
 
-            sauceUserName = "aecheverri";
-            sauceAccessKey = "51301cae-9ded-46a1-9afb-6c83eb7988ae";
+            sauceUserName = "aecheverrir";
+            sauceAccessKey = "f52f7e84-4e1f-47cb-bee8-6dc8786c2555";
 
             ChromeOptions options = new ChromeOptions();
             options.AddAdditionalCapability(CapabilityType.Version, "latest", true);
@@ -33,6 +34,7 @@ namespace Training_QA_Automation
             TimeSpan.FromSeconds(600));
 
             regPage = new RegistrationPage(driver);
+            mailPage = new EmailInboxPage(driver);
         }
 
         [TestMethod]
@@ -41,7 +43,19 @@ namespace Training_QA_Automation
             regPage.GoToPage();
             regPage.ClickSignIn();
             regPage.ClickCreateAccount();
-            regPage.TypeEmail("testemail@mail.com");
+            string randomMail = regPage.GenerateMail();
+            regPage.TypeEmail(randomMail + "@getnada.com");
+            regPage.ClickNextStep1();
+            mailPage.GoToPage();
+            mailPage.ClickAddInbox();
+            mailPage.TypeInboxName(randomMail);
+            mailPage.ClickAccept();
+            string verificationCode = mailPage.GetVerificationCode();
+            regPage.GoToPage("auth/create-account/verify-email");
+            regPage.TypeVerificationCode(verificationCode);
+            regPage.ClickVerifyEmail();
+
+
         }
 
         [TestCleanup]

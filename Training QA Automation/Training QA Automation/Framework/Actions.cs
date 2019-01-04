@@ -47,5 +47,11 @@ namespace Training_QA_Automation.Framework
             WaitForPageToFinishLoading(driver);
             element.SendKeys(value);
         }
+
+        public static void Clear(IWebDriver driver, IWebElement element)
+        {
+            WaitForPageToFinishLoading(driver);
+            element.Clear();
+        }
     }
 }
